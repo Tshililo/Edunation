@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item Text="User Guide" NavigateUrl="#" />
+  <item Text="Learning Criteria" NavigateUrl="#"  />
+  <item Text="Downloads" NavigateUrl="#"  />
+  <!--<item Text="Drop Box" NavigateUrl="#"  />-->
+</items>

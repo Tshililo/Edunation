@@ -1,0 +1,17 @@
+@* Menu Header *@
+<div style="padding-bottom: 10px; float: right;">
+    @Html.DevExpress().Menu(settings =>
+{
+    settings.Name = "SubjectsMenu";
+    settings.ShowAsToolbar = true;
+    settings.ShowPopOutImages = DefaultBoolean.True;
+    settings.Items.Add("New", "btnHeaderNew");
+    settings.Items.Add("Edit", "btnHeaderEdit");
+    settings.Items.Add("Delete", "btnHeaderDelete");
+    settings.Items.Add("Turtorials", "btnHeaderTurtorials");
+    settings.Items.Add("Exam Papers", "btnHeaderExams");
+    settings.Items.Add("Print", "btnPrintReport");
+    settings.ClientSideEvents.ItemClick = "OnSubjectsMenuClick";
+}).GetHtml()
+
+</div>

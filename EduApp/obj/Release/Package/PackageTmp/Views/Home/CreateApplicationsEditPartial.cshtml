@@ -1,0 +1,27 @@
+
+@model EduApp.Profile
+
+@using DevExpress.Web;
+@using DevExpress.Web.Mvc;
+
+@Html.HiddenFor(e => e.ObjId)
+
+@Html.DevExpress().FormLayout(formSettings =>
+{
+	@Html.AntiForgeryToken();
+
+	formSettings.Name = "ApplicationsFeatureLayout";
+	formSettings.AlignItemCaptionsInAllGroups = true;
+	formSettings.ColCount = 1;
+
+	var infoGroupItem1 = formSettings.Items.AddGroupItem(settings =>
+	{
+		settings.Caption = "Profile Information";
+		//settings.RowSpan = 2;
+		settings.ShowCaption = DefaultBoolean.True;
+		settings.ColCount = 2;
+
+	});
+
+
+}).Bind(Model).GetHtml();

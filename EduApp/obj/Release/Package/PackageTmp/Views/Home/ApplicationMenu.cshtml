@@ -1,0 +1,18 @@
+@* Menu Header *@
+<div style="padding-bottom: 10px; float: right;">
+    @Html.DevExpress().Menu(settings =>
+{
+    settings.Name = "ApplicationMenu";
+    settings.ShowAsToolbar = true;
+    settings.ShowPopOutImages = DefaultBoolean.True;
+    settings.Items.Add("New", "btnHeaderNew");
+    settings.Items.Add("Edit", "btnHeaderEdit");
+    settings.Items.Add("Delete", "btnHeaderDelete");
+    settings.Items.Add("Write Excesize", "btnWriteExcesizePopUp");
+    settings.Items.Add("Learn", "btnLinkToLearning");  
+ //   settings.Items.Add("Send SMS", "btnLinkToGrave");
+    settings.Items.Add("Print", "btnPrintReport");    
+    settings.ClientSideEvents.ItemClick = "OnApplicationMenuClick";
+}).GetHtml()
+
+</div>

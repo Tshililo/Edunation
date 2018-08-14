@@ -1,0 +1,91 @@
+@{ Layout = "~/Views/Shared/_lightLayout.cshtml"; }
+@model EduApp.Models.LoginModel
+
+
+<style>
+	#outPopUp {
+		position: absolute;
+		z-index: 15;
+		top: 70%;
+		left: 47%;
+		margin: -100px 0 0 -150px;
+	}
+</style>
+
+<style>
+	#outPopUp2 {
+		position: absolute;
+		z-index: 15;
+		top: 30%;
+		left: 40%;
+		margin: -100px 0 0 -150px;
+	}
+</style>
+
+@using (Html.BeginForm())
+{
+
+<div id="outPopUp2">
+	<h2>
+		<img src="~/content/Images/Edu-Nation.jpg"><br />
+	</h2>
+
+</div>
+
+<div id="outPopUp">
+		@*<h2>
+			<img src="~/content/Images/Edu-Nation.jpg"><br />
+		</h2>*@
+
+		@using (Html.BeginForm())
+        {
+
+	@Html.AntiForgeryToken()
+
+	@Html.DevExpress().TextBoxFor(m => m.UserName, tb =>
+{
+    tb.Properties.Caption = "User Name";
+    tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+    tb.ShowModelErrors = true;
+    tb.Properties.ValidationSettings.Display = Display.Dynamic;
+    tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+    tb.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+}).GetHtml()
+
+	@Html.DevExpress().TextBoxFor(m => m.Password, tb =>
+{
+    tb.Properties.Caption = "Password";
+    tb.Properties.Password = true;
+    tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+    tb.ShowModelErrors = true;
+    tb.Properties.ValidationSettings.Display = Display.Dynamic;
+    tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+    tb.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+}).GetHtml()
+
+	<br />
+	@Html.DevExpress().Button(b =>
+{
+    b.Name = "Button";
+    b.Text = "Log On";
+    b.UseSubmitBehavior = true;
+}).GetHtml()
+
+            @*<br />
+            <br />
+            @Html.ActionLink("Forgot Password", "ForgotPassword", "Account")
+
+            <br />
+            <br />
+            @Html.ActionLink("New Registration", "Register", "Account")*@
+
+        }
+		<p style="color:red">@ViewBag.ErrorMessage</p>
+
+	</div>
+
+}
+
+
+
+
