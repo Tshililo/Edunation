@@ -83,12 +83,14 @@ namespace EduApp.Controllers {
             {
                 //Get User Role
                 string userRole = GetUserRolesDto(user.Id.ToString());
-
                 var result = PasswordSignIn(model.UserName, model.Password, (bool)model.RememberMe, user.Email, user.Password, userRole);
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        Session["UserRole"] = userRole;
+
+                        string newuserRole = userRole.Replace(" ", "");
+
+                        Session["UserRole"] = newuserRole;
                         Session["UserName"] = user.UserName;
                         Session["Year"] = DateTime.Now.ToString("yyyy");
                         Session["TimeLogged"] = DateTime.Now.ToString("HH:mm:ss");

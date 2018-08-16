@@ -10,6 +10,8 @@
     <Property Name="Link" Type="nchar" MaxLength="500" />
     <Property Name="SubjectID" Type="uniqueidentifier" />
     <Property Name="PaperNo" Type="nvarchar" MaxLength="500" />
+    <Property Name="Year" Type="nchar" MaxLength="10" />
+    <Property Name="Type" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="ReportHeader">
     <Key>

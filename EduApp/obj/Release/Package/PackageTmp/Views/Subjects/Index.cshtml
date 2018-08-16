@@ -1,0 +1,315 @@
+﻿@using (Html.BeginForm())
+{
+    <script type="text/javascript">
+
+        function OnSubjectsHeaderGridFocusedRowChanged(s, e) {
+
+            //Get the User's Id from the selected row
+            s.GetRowValues(s.GetFocusedRowIndex(), 'ObjId', OnGetRowValues);
+        }
+
+        function OnGetRowValues(values) {
+            //return the selected value
+            Subjects_ObjId = values;
+         //   TopicExamsGridViewPartial.PerformCallback();
+        }
+
+        function OnBeginCallback(s, e) {
+            // alert('OnBeginCallback e:  ' + e);
+            e.customArgs["headerObjId"] = Subjects_ObjId;
+        }
+
+
+        function InitialSetFocus(s, e) {
+            if (s.GetFocusedRowIndex() < 0)
+                s.SetFocusedRowIndex(0);
+        }
+
+        function HighlightEllipsis() {
+            $('.dxgv.dx-ellipsis').each(function (i, elem) {
+                var color = elem.offsetWidth < elem.scrollWidth ? '#FFF2C0' : 'white';
+                elem.style.transition = 'background 1s';
+                elem.style['background-color'] = color;
+            });
+        }
+
+        //for exports on grids
+        function OnToolbarItemClick(s, e) {
+        }
+        function IsExportToolbarCommand(command) {
+            return command == "Pdf" || command == "Xlsx" || command == "Xls";
+        }
+        
+
+        function SaveSubjectExam() {
+
+            TopicExamsGridViewPartial.UpdateEdit()
+        }
+        function SaveSubject() {
+
+        SubjectsGridViewPartial.UpdateEdit()
+        }
+
+        function PrintReport() {
+            //Get Header
+            var ObjId = SubjectsGridViewPartial.GetRowKey(SubjectsGridViewPartial.GetFocusedRowIndex());
+            //Get values
+            var attention = Attention.GetValue();
+            //var datefrom = DateFrom.GetValue();
+            //var dateto = DateTo.GetValue();
+
+            //var myDate = new Date(datefrom);
+            //var from = myDate.toLocaleString()
+
+            //var myDate1 = new Date(dateto);
+            //var to = myDate1.toLocaleString()
+
+            var passed_params = ObjId + "," + attention
+
+            if (attention == null) {
+                alert('Please Enter Attention to!');
+                return;
+            }
+
+            var link = '@Url.Action("ReportViewPartial", "Subjects", new { reportParams = "_reportParams_" })';
+
+            link.replace("_reportParams_", passed_params);
+            window.open(link.replace("_reportParams_", passed_params), '_blank');
+
+        }
+        
+
+        //TopicExams Menu Buttons
+        function OnTopicExamsMenuClick(s, e) {
+            //alert("I am here: So ya clicked he button over yonder then: " + e.item.name)
+            //https://documentation.devexpress.com/#AspNet/DevExpressWebScriptsASPxClientGridView_UpdateEdittopic
+            if (e.item.name == "btnHeaderNew") {
+                var index = TopicExamsGridViewPartial.GetFocusedRowIndex();
+                TopicExamsGridViewPartial.AddNewRow(index);
+                // call edit funtion from custom button
+            }
+
+            if (e.item.name == "btnHeaderEdit") {
+                var index = TopicExamsGridViewPartial.GetFocusedRowIndex();
+                //  alert('index : ' + index);
+                TopicExamsGridViewPartial.StartEditRow(index);
+                // call edit funtion from custom button 
+            }
+
+            if (e.item.name == "btnHeaderDelete") {
+                if (confirm("Confirm Delete?")) {
+                    var index = TopicExamsGridViewPartial.GetFocusedRowIndex();
+                    TopicExamsGridViewPartial.DeleteRow(index);
+                }
+            }
+
+
+        }
+
+
+        //Subjects Menu Buttons
+        function OnSubjectsMenuClick(s, e) {
+            //alert("I am here: So ya clicked he button over yonder then: " + e.item.name)
+            //https://documentation.devexpress.com/#AspNet/DevExpressWebScriptsASPxClientGridView_UpdateEdittopic
+            if (e.item.name == "btnHeaderNew") {
+                var index = SubjectsGridViewPartial.GetFocusedRowIndex();
+                SubjectsGridViewPartial.AddNewRow(index);
+                // call edit funtion from custom button
+            }
+
+            if (e.item.name == "btnHeaderEdit") {
+                var index = SubjectsGridViewPartial.GetFocusedRowIndex();
+                //  alert('index : ' + index);
+                SubjectsGridViewPartial.StartEditRow(index);
+                // call edit funtion from custom button 
+            }
+
+            if (e.item.name == "btnHeaderDelete") {
+            if (confirm("Confirm Delete?")) {
+                var index = SubjectsGridViewPartial.GetFocusedRowIndex();
+                SubjectsGridViewPartial.DeleteRow(index);
+            }
+        }
+
+            if (e.item.name == "btnHeaderTurtorials") {
+                TurtorialsLandingPopUp.Show();
+            }
+
+            if (e.item.name == "btnHeaderExams") {
+                ExamsLandingPopUp.Show();
+            }
+
+            if (e.item.name == "btnPrintReport") {
+
+                ReportOptions.Show();
+            }
+            
+        }
+    </script>
+    @Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "SubjectLayOut";
+    settings.AlignItemCaptionsInAllGroups = true;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+    var SubjectsHeader = settings.Items.AddGroupItem(groupSettings =>
+    {
+        // groupSettings.Caption = string.Format("Transmission Files To Process");
+        groupSettings.Caption = "Subjects";
+        groupSettings.ShowCaption = DefaultBoolean.True;
+        groupSettings.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+        groupSettings.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Left;
+        groupSettings.ColCount = 1;
+    });
+
+    SubjectsHeader.Items.Add(itemSettings =>
+    {
+        itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        itemSettings.ShowCaption = DefaultBoolean.False;
+        itemSettings.ColSpan = 1;
+        itemSettings.SetNestedContent(() =>
+        {
+            @Html.RenderAction("SubjectsGridViewPartial");
+        });
+    });
+
+    SubjectsHeader.Items.Add(itemSettings =>
+    {
+        itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        itemSettings.ShowCaption = DefaultBoolean.False;
+        itemSettings.ColSpan = 1;
+        itemSettings.SetNestedContent(() =>
+        {
+            @Html.RenderPartial("SubjectsMenu");
+        });
+    });
+
+
+    //var SubjectsDetail = settings.Items.AddGroupItem(groupSettings =>
+    //{
+    //    // groupSettings.Caption = string.Format("Transmission Files To Process");
+    //    groupSettings.Caption = "Exam Papers ";
+    //    groupSettings.ShowCaption = DefaultBoolean.True;
+    //    groupSettings.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+    //    groupSettings.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Left;
+    //    groupSettings.ColCount = 1;
+    //});
+
+    //SubjectsDetail.Items.Add(itemSettings =>
+    //{
+    //    itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    //    itemSettings.ShowCaption = DefaultBoolean.False;
+    //    itemSettings.ColSpan = 1;
+    //    itemSettings.SetNestedContent(() =>
+    //    {
+    //        @Html.RenderAction("TopicExamsGridViewPartial");
+    //    });
+    //});
+
+    //SubjectsDetail.Items.Add(itemSettings =>
+    //{
+    //    itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    //    itemSettings.ShowCaption = DefaultBoolean.False;
+    //    itemSettings.ColSpan = 1;
+    //    itemSettings.SetNestedContent(() =>
+    //    {
+    //        @Html.RenderPartial("TopicExamsMenu");
+    //    });
+    //});
+
+}).GetHtml()
+
+    @Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "TurtorialsLandingPopUp";
+    settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
+    settings.CallbackRouteValues = new { Controller = "Subjects", Action = "TurtorialsLanding" };
+    settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.Width = Unit.Pixel(700);
+    settings.Height = Unit.Pixel(500);
+    settings.ShowCloseButton = true;
+    settings.ShowHeader = true;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.AllowDragging = true;
+    settings.DragElement = DragElement.Header;
+    settings.AllowResize = true;
+    settings.Modal = true;
+    settings.ResizingMode = ResizingMode.Live;
+    settings.ShowSizeGrip = ShowSizeGrip.True;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.PopupAction = PopupAction.LeftMouseClick;
+    settings.HeaderText = "Turtorials";
+    settings.ShowCloseButton = true;
+
+    settings.SetContent(() =>
+    {
+        //       @Html.RenderAction("TurtorialsLanding");
+
+    });
+
+}).GetHtml()
+
+    @Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "ExamsLandingPopUp";
+    settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
+    settings.CallbackRouteValues = new { Controller = "Subjects", Action = "ExamsLanding" };
+    settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.Width = Unit.Pixel(1300);
+    settings.Height = Unit.Pixel(800);
+    settings.ShowCloseButton = true;
+    settings.ShowHeader = true;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.AllowDragging = true;
+    settings.DragElement = DragElement.Header;
+    settings.AllowResize = true;
+    settings.Modal = true;
+    settings.ResizingMode = ResizingMode.Live;
+    settings.ShowSizeGrip = ShowSizeGrip.True;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.PopupAction = PopupAction.LeftMouseClick;
+    settings.HeaderText = "Exam Papers";
+    settings.ShowCloseButton = true;
+
+    settings.SetContent(() =>
+    {
+       //       @Html.RenderAction("TurtorialsLanding");
+
+    });
+
+}).GetHtml()
+
+    @Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "ReportOptions";
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.Width = Unit.Pixel(200);
+    settings.Height = Unit.Pixel(250);
+    settings.ShowCloseButton = true;
+    settings.ShowHeader = true;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.AllowDragging = true;
+    settings.DragElement = DragElement.Header;
+    settings.AllowResize = true;
+    settings.Modal = true;
+    settings.ResizingMode = ResizingMode.Live;
+    settings.ShowSizeGrip = ShowSizeGrip.True;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.PopupAction = PopupAction.LeftMouseClick;
+    settings.HeaderText = "Report Options";
+    settings.ShowCloseButton = true;
+
+    settings.SetContent(() =>
+    {
+
+        @Html.RenderPartial("ReportOptions");
+
+    });
+
+}).GetHtml()
+}

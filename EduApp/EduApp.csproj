@@ -350,6 +350,10 @@
     <Content Include="Views\Subjects\_TopicExamsGridViewPartial.cshtml" />
     <Content Include="Views\Subjects\CreateTopicExamsEditPartial.cshtml" />
     <Content Include="Views\Subjects\ExamsLanding.cshtml" />
+    <Content Include="Views\Exams\Index.cshtml" />
+    <Content Include="Views\Exams\TopicExamsMenu.cshtml" />
+    <Content Include="Views\Exams\_TopicExamsGridViewPartial.cshtml" />
+    <Content Include="Views\Exams\CreateTopicExamsEditPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -368,6 +372,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PRSController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\ExamsController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="EduNationEntity.Context.cs">

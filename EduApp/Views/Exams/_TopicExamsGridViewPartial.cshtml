@@ -1,0 +1,99 @@
+@using DevExpress.Web;
+@using DevExpress.Web.Mvc;
+@using EduApp.Helpers;
+
+
+
+@Html.DevExpress().GridView(
+    settings =>
+    {
+
+        settings.Name = "TopicExamsGridViewPartial";
+        Html.PalBrokerHtml().GridView.GridDefaultBehavior(settings, "TopicExamsGridViewPartial");
+
+        settings.CallbackRouteValues = new { Controller = "Exams", Action = "TopicExamsGridViewPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Exams", Action = "TopicExamsAddEdit" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Exams", Action = "TopicExamsAddEdit" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Exams", Action = "TopicExamsDelete" };
+        settings.Width = Unit.Percentage(100);
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.VerticalScrollableHeight = 510;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm; // POPUP EDIT FORM
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.ShowHeader = true;
+
+        settings.KeyFieldName = "ObjId";
+        settings.Columns.Add(column => { column.FieldName = "Year"; column.Caption = "Year"; column.Width = Unit.Pixel(320); });
+        settings.Columns.Add(column => { column.FieldName = "Type"; column.Caption = "Type"; column.Width = Unit.Pixel(320); });
+        settings.Columns.Add(column => { column.FieldName = "Term"; column.Caption = "Term"; column.Width = Unit.Pixel(80);});
+        settings.Columns.Add(column => { column.FieldName = "PaperNo"; column.Caption = "Paper"; column.Width = Unit.Pixel(80); });
+
+        string UserRole = Session["UserRole"].ToString();
+
+        var GetUserRole = UserRole == "Admin" ? "true" : "false";
+
+        bool isEdit = bool.Parse(GetUserRole);
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Link";
+            column.Caption = "Paper";
+            column.ColumnType = MVCxGridViewColumnType.HyperLink;
+            var hyperLinkProperties = column.PropertiesEdit as HyperLinkProperties;
+            column.Width = Unit.Pixel(720);
+        });
+
+        settings.SetEditFormTemplateContent(c =>
+        {
+
+            ViewContext.Writer.Write((Html.Action("TopicExamsEditHeaderFormPartial", new { ObjId = c.KeyValue != null ? c.KeyValue.ToString() : Guid.NewGuid().ToString() }).ToHtmlString()));
+        });
+
+        //settings.BeforeGetCallbackResult = (s, e) =>
+
+        //{
+        //    var gridview = s as mvcxgridview;
+        //    var doc = gridview.editingrowvisibleindex > 0 ? gridview.getrowvalues(gridview.editingrowvisibleindex, "subjectname").tostring() : "";
+        //    gridview.settingstext.popupeditformcaption = "edit : " + doc;
+
+        //    if (gridview.isnewrowediting)
+        //    {
+        //        gridview.settingstext.popupeditformcaption = "new subject";
+
+        //    }
+        //};
+
+
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.AlwaysShowPager = true;
+
+        settings.ClientSideEvents.ColumnResized = "HighlightEllipsis";
+        settings.SettingsBehavior.AllowEllipsisInText = true;
+
+        settings.ControlStyle.Wrap = DefaultBoolean.False;
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+
+
+        // settings.ClientSideEvents.FocusedRowChanged = "OnTopicExamsGridFocusedRowChanged";
+
+        //   settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
+        //   settings.ClientSideEvents.EndCallback = "InitialSetFocus";
+        settings.ClientSideEvents.Init = "function(s, e) { s.PerformCallback(); }";
+
+        settings.Settings.ShowHeaderFilterButton = true;
+        settings.SettingsPopup.HeaderFilter.Height = 250;
+        var headerFilterMode = GridHeaderFilterMode.CheckedList;
+        foreach (GridViewDataColumn column in settings.Columns)
+            column.SettingsHeaderFilter.Mode = headerFilterMode;
+    }).SetEditErrorText(ViewData["EditError"] != null ? (string)ViewData["EditError"] : string.Empty).Bind(Model).GetHtml()

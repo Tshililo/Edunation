@@ -1,3 +1,5 @@
+@using (Html.BeginForm())
+{
 @Html.DevExpress().FormLayout(settings =>
 {
     settings.Name = "SubjectExamsLayOut";
@@ -37,3 +39,4 @@
     });
 
 }).GetHtml()
+}

@@ -16,6 +16,7 @@
         group.Text = "Profile Information";
         //group.Items.Add("My Profile", "", "~/Content/Images/student.jpg").NavigateUrl = DevExpressHelper.GetUrl(new { Controller = "Home", Action = "index" });
         group.Items.Add("Subjects", "", "~/Content/Images/Subjects.jpg").NavigateUrl = DevExpressHelper.GetUrl(new { Controller = "Subjects", Action = "index" });
+        group.Items.Add("Exam Papers", "", "~/Content/Images/Subjects.jpg").NavigateUrl = DevExpressHelper.GetUrl(new { Controller = "Exams", Action = "index" });
         //	group.Items.Add("Study Materials", "", "~/Content/Images/VideoLecture.jpg").NavigateUrl = DevExpressHelper.GetUrl(new { Controller = "Home", Action = "StudyMaterials" });
         //       group.Items.Add("Grave Ownership", "", "").NavigateUrl = DevExpressHelper.GetUrl(new { Controller = "CemeteryOwnership", Action = "index" });
     });
@@ -33,8 +34,8 @@
 
     bool isEdit = bool.Parse(GetUserRole);
 
-    // if (isEdit == true)
-    //{
+    if (isEdit == true)
+    {
     settings.Groups.Add(group =>
     {
         group.Text = "User Management";
@@ -43,7 +44,7 @@
         //     group.Visible = isEdit;
     });
 
-    // }
+    }
 
 
     settings.Groups.Add(group =>

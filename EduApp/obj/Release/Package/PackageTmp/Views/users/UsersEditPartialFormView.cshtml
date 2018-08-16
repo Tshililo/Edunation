@@ -27,7 +27,6 @@
         Gsettings.ShowCaption = DefaultBoolean.True;
         Gsettings.ColCount = 1;
         Gsettings.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
-
         Gsettings.Items.Add(TextFieldSettings =>
         {
             TextFieldSettings.ShowCaption = DefaultBoolean.True;
@@ -45,6 +44,11 @@
                     }).Bind(Model.UserName).Render();
             });
 
+        });
+        Gsettings.Items.Add(i => i.Idno, itemSettings =>
+        {
+            itemSettings.Caption = "Id No";
+            itemSettings.FieldName = "Idno";
         });
         Gsettings.Items.Add(TextFieldSettings =>
         {
@@ -64,9 +68,50 @@
             });
 
         });
-
         Gsettings.Items.Add(i => i.EmailConfirmed);
         Gsettings.Items.Add(i => i.PhoneNumber);
+        Gsettings.Items.Add(i => i.Address, itemSettings =>
+        {
+            itemSettings.Caption = "Address";
+            itemSettings.FieldName = "Address";
+        });
+        Gsettings.Items.Add(e => e.Gender, itemSettings =>
+        {
+            //  itemSettings.FieldName = "DeedGenderDropDown";
+            itemSettings.Caption = " Gender";
+            itemSettings.SetNestedContent(() =>
+            {
+
+                @Html.DevExpress().ComboBox(ComboBoxsettings =>
+                {
+                    ComboBoxsettings.Name = "Gender";
+                    //  ComboBoxsettings.SelectedIndex = 0;
+                    ComboBoxsettings.Properties.Items.Add("Male");
+                    ComboBoxsettings.Properties.Items.Add("Female");
+                    ComboBoxsettings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    ComboBoxsettings.ShowModelErrors = true;
+                }).Bind(Model.Gender).Render();
+            });
+        });
+        Gsettings.Items.Add(e => e.Grade, itemSettings =>
+        {
+            //  itemSettings.FieldName = "DeedGenderDropDown";
+            itemSettings.Caption = " Grade";
+            itemSettings.SetNestedContent(() =>
+            {
+
+                @Html.DevExpress().ComboBox(ComboBoxsettings =>
+                {
+                    ComboBoxsettings.Name = "Grade";
+                    //  ComboBoxsettings.SelectedIndex = 0;
+                    ComboBoxsettings.Properties.Items.Add("10");
+                    ComboBoxsettings.Properties.Items.Add("11");
+                    ComboBoxsettings.Properties.Items.Add("12");
+                    ComboBoxsettings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    ComboBoxsettings.ShowModelErrors = true;
+                }).Bind(Model.Grade).Render();
+            });
+        });
 
 
     });

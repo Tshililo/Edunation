@@ -15,6 +15,8 @@
           <Property Name="Link" Type="nchar" MaxLength="500" />
           <Property Name="SubjectID" Type="uniqueidentifier" />
           <Property Name="PaperNo" Type="nvarchar" MaxLength="500" />
+          <Property Name="Year" Type="nchar" MaxLength="10" />
+          <Property Name="Type" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="ReportHeader">
           <Key>
@@ -120,23 +122,10 @@
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
-          <EntitySet Name="SchoolSubs" EntityType="EduNationModel.SchoolSub" />
           <EntitySet Name="ReportHeaders" EntityType="EduNationModel.ReportHeader" />
           <EntitySet Name="Exams" EntityType="EduNationModel.Exam" />
+          <EntitySet Name="SchoolSubs" EntityType="EduNationModel.SchoolSub" />
         </EntityContainer>
-        <EntityType Name="SchoolSub">
-          <Key>
-            <PropertyRef Name="ObjId" />
-          </Key>
-          <Property Name="ObjId" Type="Guid" Nullable="false" />
-          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Topics" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Term" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="Weeks" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ExamPaperLink" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityType Name="ReportHeader">
           <Key>
             <PropertyRef Name="ObjId" />
@@ -160,6 +149,21 @@
           <Property Name="Link" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <Property Name="SubjectID" Type="Guid" />
           <Property Name="PaperNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SchoolSub">
+          <Key>
+            <PropertyRef Name="ObjId" />
+          </Key>
+          <Property Name="ObjId" Type="Guid" Nullable="false" />
+          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Topics" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Term" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Weeks" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExamPaperLink" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -201,20 +205,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SchoolSubs">
-            <EntityTypeMapping TypeName="EduNationModel.SchoolSub">
-              <MappingFragment StoreEntitySet="SchoolSub">
-                <ScalarProperty Name="ExamPaperLink" ColumnName="ExamPaperLink" />
-                <ScalarProperty Name="Weeks" ColumnName="Weeks" />
-                <ScalarProperty Name="Term" ColumnName="Term" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="Topics" ColumnName="Topics" />
-                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
-                <ScalarProperty Name="ObjId" ColumnName="ObjId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ReportHeaders">
             <EntityTypeMapping TypeName="EduNationModel.ReportHeader">
               <MappingFragment StoreEntitySet="ReportHeader">
@@ -232,11 +222,27 @@
           <EntitySetMapping Name="Exams">
             <EntityTypeMapping TypeName="EduNationModel.Exam">
               <MappingFragment StoreEntitySet="Exams">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="PaperNo" ColumnName="PaperNo" />
                 <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="ObjId" ColumnName="ObjId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolSubs">
+            <EntityTypeMapping TypeName="EduNationModel.SchoolSub">
+              <MappingFragment StoreEntitySet="SchoolSub">
+                <ScalarProperty Name="ExamPaperLink" ColumnName="ExamPaperLink" />
+                <ScalarProperty Name="Weeks" ColumnName="Weeks" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Topics" ColumnName="Topics" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
                 <ScalarProperty Name="ObjId" ColumnName="ObjId" />
               </MappingFragment>
             </EntityTypeMapping>

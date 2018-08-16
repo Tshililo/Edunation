@@ -32,10 +32,9 @@ namespace EduApp.Controllers
         }
         public ActionResult ExamsLanding()
         {
-
-
             return PartialView("ExamsLanding");
         }
+
         [HttpGet]
         public ActionResult ReportViewPartial(string reportParams)
         {
@@ -142,6 +141,8 @@ namespace EduApp.Controllers
                 exists.Link = SchoolSubs.Link;
                 exists.PaperNo = item.PaperNo;
                 exists.Term = SchoolSubs.Term;
+                exists.Year = item.Year;
+                exists.Type = item.Type;
                 this.UpdateModel(exists);
                 db.SaveChanges();
             }

@@ -184,39 +184,6 @@
         });
     });
 
-
-    //var SubjectsDetail = settings.Items.AddGroupItem(groupSettings =>
-    //{
-    //    // groupSettings.Caption = string.Format("Transmission Files To Process");
-    //    groupSettings.Caption = "Exam Papers ";
-    //    groupSettings.ShowCaption = DefaultBoolean.True;
-    //    groupSettings.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
-    //    groupSettings.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Left;
-    //    groupSettings.ColCount = 1;
-    //});
-
-    //SubjectsDetail.Items.Add(itemSettings =>
-    //{
-    //    itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-    //    itemSettings.ShowCaption = DefaultBoolean.False;
-    //    itemSettings.ColSpan = 1;
-    //    itemSettings.SetNestedContent(() =>
-    //    {
-    //        @Html.RenderAction("TopicExamsGridViewPartial");
-    //    });
-    //});
-
-    //SubjectsDetail.Items.Add(itemSettings =>
-    //{
-    //    itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-    //    itemSettings.ShowCaption = DefaultBoolean.False;
-    //    itemSettings.ColSpan = 1;
-    //    itemSettings.SetNestedContent(() =>
-    //    {
-    //        @Html.RenderPartial("TopicExamsMenu");
-    //    });
-    //});
-
 }).GetHtml()
 
     @Html.DevExpress().PopupControl(settings =>
@@ -251,7 +218,7 @@
 
 }).GetHtml()
 
-    @Html.DevExpress().PopupControl(settings =>
+    @*@Html.DevExpress().PopupControl(settings =>
 {
     settings.Name = "ExamsLandingPopUp";
     settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
@@ -281,7 +248,7 @@
 
     });
 
-}).GetHtml()
+}).GetHtml()*@
 
     @Html.DevExpress().PopupControl(settings =>
 {

@@ -193,7 +193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2018 12:34:59</publishTime>
     </File>
     <File Include="bin/EduApp.dll">
-      <publishTime>07/11/2018 13:20:45</publishTime>
+      <publishTime>08/14/2018 08:22:36</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -537,6 +537,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/Site.css">
       <publishTime>07/03/2018 17:21:03</publishTime>
     </File>
+    <File Include="EduNationEntity.edmx.diagram">
+      <publishTime>08/12/2018 17:18:56</publishTime>
+    </File>
     <File Include="EduNationEntityModel.edmx.diagram">
       <publishTime>07/03/2018 17:33:34</publishTime>
     </File>
@@ -643,7 +646,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2018 17:21:16</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>07/03/2018 21:21:51</publishTime>
+      <publishTime>07/12/2018 09:06:55</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>07/03/2018 17:21:09</publishTime>
@@ -721,13 +724,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2018 17:44:06</publishTime>
     </File>
     <File Include="Views/Roles/UsersLandingFormView.cshtml">
-      <publishTime>07/03/2018 17:44:06</publishTime>
+      <publishTime>07/15/2018 06:25:49</publishTime>
     </File>
     <File Include="Views/Roles/_RolesGridViewPartial.cshtml">
       <publishTime>07/03/2018 17:44:06</publishTime>
     </File>
     <File Include="Views/Shared/ContentLeftPartialView.cshtml">
-      <publishTime>07/05/2018 10:49:00</publishTime>
+      <publishTime>08/12/2018 12:57:03</publishTime>
     </File>
     <File Include="Views/Shared/DisplayTemplates/Boolean.cshtml">
       <publishTime>07/03/2018 17:21:21</publishTime>
@@ -769,13 +772,49 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2018 17:21:11</publishTime>
     </File>
     <File Include="Views/Shared/_mainLayout.cshtml">
-      <publishTime>07/03/2018 17:21:11</publishTime>
+      <publishTime>08/12/2018 17:44:34</publishTime>
     </File>
     <File Include="Views/Shared/_rootLayout.cshtml">
       <publishTime>07/03/2018 17:21:12</publishTime>
     </File>
+    <File Include="Views/Subjects/CreateSubjectsEditPartial.cshtml">
+      <publishTime>08/03/2018 06:05:55</publishTime>
+    </File>
+    <File Include="Views/Subjects/CreateTopicExamsEditPartial.cshtml">
+      <publishTime>08/12/2018 17:25:10</publishTime>
+    </File>
+    <File Include="Views/Subjects/ExamsLanding.cshtml">
+      <publishTime>08/12/2018 16:32:58</publishTime>
+    </File>
+    <File Include="Views/Subjects/Index.cshtml">
+      <publishTime>08/12/2018 16:52:55</publishTime>
+    </File>
+    <File Include="Views/Subjects/ReportOptions.cshtml">
+      <publishTime>08/08/2018 13:53:11</publishTime>
+    </File>
+    <File Include="Views/Subjects/ReportPartialView.cshtml">
+      <publishTime>08/08/2018 13:59:12</publishTime>
+    </File>
+    <File Include="Views/Subjects/ReportViewPartial.cshtml">
+      <publishTime>08/08/2018 13:59:27</publishTime>
+    </File>
+    <File Include="Views/Subjects/SubjectsMenu.cshtml">
+      <publishTime>08/12/2018 16:38:10</publishTime>
+    </File>
+    <File Include="Views/Subjects/TopicExamsMenu.cshtml">
+      <publishTime>08/12/2018 16:44:55</publishTime>
+    </File>
+    <File Include="Views/Subjects/TurtorialsLanding.cshtml">
+      <publishTime>07/19/2018 12:32:03</publishTime>
+    </File>
+    <File Include="Views/Subjects/_SubjectsGridViewPartial.cshtml">
+      <publishTime>08/12/2018 17:33:58</publishTime>
+    </File>
+    <File Include="Views/Subjects/_TopicExamsGridViewPartial.cshtml">
+      <publishTime>08/12/2018 17:27:23</publishTime>
+    </File>
     <File Include="Views/users/Index.cshtml">
-      <publishTime>07/03/2018 17:35:00</publishTime>
+      <publishTime>08/03/2018 06:14:26</publishTime>
     </File>
     <File Include="Views/users/ResetPassword.cshtml">
       <publishTime>07/03/2018 17:40:49</publishTime>
@@ -784,7 +823,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2018 17:35:00</publishTime>
     </File>
     <File Include="Views/users/RolesEditPartialFormView.cshtml">
-      <publishTime>07/03/2018 17:40:49</publishTime>
+      <publishTime>08/12/2018 13:13:33</publishTime>
     </File>
     <File Include="Views/users/UserMenu.cshtml">
       <publishTime>07/03/2018 17:35:00</publishTime>
@@ -796,7 +835,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2018 17:40:39</publishTime>
     </File>
     <File Include="Views/users/UsersEditPartialFormView.cshtml">
-      <publishTime>07/03/2018 17:40:36</publishTime>
+      <publishTime>07/12/2018 09:23:08</publishTime>
     </File>
     <File Include="Views/users/UsersLandingFormView.cshtml">
       <publishTime>07/03/2018 17:35:00</publishTime>
@@ -814,7 +853,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2018 17:21:12</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/11/2018 13:20:46</publishTime>
+      <publishTime>08/14/2018 08:22:37</publishTime>
     </File>
   </ItemGroup>
 </Project>

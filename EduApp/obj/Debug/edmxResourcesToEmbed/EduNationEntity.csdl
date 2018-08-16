@@ -35,23 +35,10 @@
     <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
-    <EntitySet Name="SchoolSubs" EntityType="EduNationModel.SchoolSub" />
     <EntitySet Name="ReportHeaders" EntityType="EduNationModel.ReportHeader" />
     <EntitySet Name="Exams" EntityType="EduNationModel.Exam" />
+    <EntitySet Name="SchoolSubs" EntityType="EduNationModel.SchoolSub" />
   </EntityContainer>
-  <EntityType Name="SchoolSub">
-    <Key>
-      <PropertyRef Name="ObjId" />
-    </Key>
-    <Property Name="ObjId" Type="Guid" Nullable="false" />
-    <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Topics" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Term" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-    <Property Name="Weeks" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="ExamPaperLink" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
-  </EntityType>
   <EntityType Name="ReportHeader">
     <Key>
       <PropertyRef Name="ObjId" />
@@ -75,5 +62,20 @@
     <Property Name="Link" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
     <Property Name="SubjectID" Type="Guid" />
     <Property Name="PaperNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SchoolSub">
+    <Key>
+      <PropertyRef Name="ObjId" />
+    </Key>
+    <Property Name="ObjId" Type="Guid" Nullable="false" />
+    <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Topics" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Term" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Weeks" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ExamPaperLink" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
   </EntityType>
 </Schema>

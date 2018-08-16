@@ -34,9 +34,9 @@
         settings.SettingsPopup.EditForm.ShowHeader = true;
 
         settings.KeyFieldName = "ObjId";
-        
+        settings.Columns.Add(column => { column.FieldName = "Year"; column.Caption = "Year"; column.Width = Unit.Pixel(320); });
+        settings.Columns.Add(column => { column.FieldName = "Type"; column.Caption = "Type"; column.Width = Unit.Pixel(320); });
         settings.Columns.Add(column => { column.FieldName = "Term"; column.Caption = "Term"; column.Width = Unit.Pixel(80);});
-        settings.Columns.Add(column => { column.FieldName = "Subject"; column.Caption = "Subject"; column.Width = Unit.Pixel(320); });
         settings.Columns.Add(column => { column.FieldName = "PaperNo"; column.Caption = "Paper"; column.Width = Unit.Pixel(80); });
 
         settings.Columns.Add(column =>

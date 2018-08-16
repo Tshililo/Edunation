@@ -223,3 +223,6 @@ C:\Users\Tshililo\OneDrive - Paltrack\EduApp\EduApp\bin\ru\DevExpress.Xpo.v17.2.
 C:\Users\Tshililo\OneDrive - Paltrack\EduApp\EduApp\obj\Release\EduApp.csprojResolveAssemblyReference.cache
 C:\Users\Tshililo\OneDrive - Paltrack\EduApp\EduApp\obj\Release\EduApp.dll
 C:\Users\Tshililo\OneDrive - Paltrack\EduApp\EduApp\obj\Release\EduApp.pdb
+C:\Users\Tshililo\OneDrive - Paltrack\EduApp\EduApp\obj\Release\EduApp.StudentsReportXrMvc.resources
+C:\Users\Tshililo\OneDrive - Paltrack\EduApp\EduApp\obj\Release\EduApp.csproj.GenerateResource.Cache
+C:\Users\Tshililo\OneDrive - Paltrack\EduApp\EduApp\obj\Release\EduApp.dll.licenses

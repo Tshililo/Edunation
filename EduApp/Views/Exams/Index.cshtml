@@ -1,0 +1,92 @@
+﻿@using (Html.BeginForm())
+{
+    <script type="text/javascript">
+
+        function HighlightEllipsis() {
+            $('.dxgv.dx-ellipsis').each(function (i, elem) {
+                var color = elem.offsetWidth < elem.scrollWidth ? '#FFF2C0' : 'white';
+                elem.style.transition = 'background 1s';
+                elem.style['background-color'] = color;
+            });
+        }
+
+        //for exports on grids
+        function OnToolbarItemClick(s, e) {
+        }
+        function IsExportToolbarCommand(command) {
+            return command == "Pdf" || command == "Xlsx" || command == "Xls";
+        }
+
+        function SaveSubjectExam() {
+
+            TopicExamsGridViewPartial.UpdateEdit()
+        }
+
+        //TopicExams Menu Buttons
+        function OnTopicExamsMenuClick(s, e) {
+            //alert("I am here: So ya clicked he button over yonder then: " + e.item.name)
+            //https://documentation.devexpress.com/#AspNet/DevExpressWebScriptsASPxClientGridView_UpdateEdittopic
+            if (e.item.name == "btnHeaderNew") {
+                var index = TopicExamsGridViewPartial.GetFocusedRowIndex();
+                TopicExamsGridViewPartial.AddNewRow(index);
+                // call edit funtion from custom button
+            }
+
+            if (e.item.name == "btnHeaderEdit") {
+                var index = TopicExamsGridViewPartial.GetFocusedRowIndex();
+                //  alert('index : ' + index);
+                TopicExamsGridViewPartial.StartEditRow(index);
+                // call edit funtion from custom button
+            }
+
+            if (e.item.name == "btnHeaderDelete") {
+                if (confirm("Confirm Delete?")) {
+                    var index = TopicExamsGridViewPartial.GetFocusedRowIndex();
+                    TopicExamsGridViewPartial.DeleteRow(index);
+                }
+            }
+
+
+        }
+    </script>
+
+    @Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "ExamsLayOut";
+    settings.AlignItemCaptionsInAllGroups = true;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+    var SubjectsHeader = settings.Items.AddGroupItem(groupSettings =>
+    {
+        // groupSettings.Caption = string.Format("Transmission Files To Process");
+        groupSettings.Caption = "Exams Landing";
+        groupSettings.ShowCaption = DefaultBoolean.True;
+        groupSettings.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+        groupSettings.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Left;
+        groupSettings.ColCount = 1;
+    });
+
+
+    SubjectsHeader.Items.Add(itemSettings =>
+    {
+        itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        itemSettings.ShowCaption = DefaultBoolean.False;
+        itemSettings.ColSpan = 1;
+        itemSettings.SetNestedContent(() =>
+        {
+            @Html.RenderAction("TopicExamsGridViewPartial");
+        });
+    });
+
+    SubjectsHeader.Items.Add(itemSettings =>
+    {
+        itemSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        itemSettings.ShowCaption = DefaultBoolean.False;
+        itemSettings.ColSpan = 1;
+        itemSettings.SetNestedContent(() =>
+        {
+            @Html.RenderPartial("TopicExamsMenu");
+        });
+    });
+}).GetHtml()
+}

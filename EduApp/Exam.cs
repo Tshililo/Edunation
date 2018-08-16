@@ -20,5 +20,7 @@ namespace EduApp
         public string Link { get; set; }
         public Nullable<System.Guid> SubjectID { get; set; }
         public string PaperNo { get; set; }
+        public string Year { get; set; }
+        public string Type { get; set; }
     }
 }
